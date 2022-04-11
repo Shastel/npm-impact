@@ -1,0 +1,14 @@
+{
+  "name": "npm-impact",
+  "version": "0.0.1",
+  "description": "",
+  "bin": "./bin.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "max@shas.tel",
+  "license": "MIT",
+  "dependencies": {
+    "npm-api": "^1.0.1"
+  }
+}
