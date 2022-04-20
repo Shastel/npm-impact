@@ -3,12 +3,13 @@
   "version": "0.0.1",
   "description": "",
   "bin": "./bin.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "max@shas.tel",
   "license": "MIT",
   "dependencies": {
+    "node-fetch": "^2.6.7",
     "npm-api": "^1.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.13.0"
   }
 }
