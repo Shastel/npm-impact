@@ -1,15 +1,15 @@
 # Npm impact
 
-A tool that performs a naive estimation which package is more important than other
+A tool that performs a naive estimation of which package is more important than other
 
 ## Motivation
 
-Once you decided to contribute to the OS dependencies of your project it is easy to lose in big project, and it usually hard to start contibuting to something really big. Howewer there are a lot of packages that supports the whole ecosystem, the tool allows you to estimate which packages is used in the depth of your dependecy three and make a maximal impact in your contribution. 
+Once you decided to contribute to the OS dependencies of your project it is easy to lose in a big project, and it is usually hard to start contributing to something really big. However there are a lot of packages that support the whole ecosystem, the tool allows you to estimate which packages are used in the depth of your dependency tree and make a maximal impact in your contribution. 
 
 ## Installation
 
 You should get [nodejs](https://nodejs.org/en/) first.
-For now npm-impact is not awailable as npm module.
+For now, npm-impact is not available as an npm module.
 
 ## Usage
 
@@ -19,7 +19,7 @@ npx github:Shastel/npm-impact path-or-url-to-pckg.json [, path-or-url-to-pckg.js
 
 ### Examples
 
-Calling of the tool with own package.json
+Calling of the tool with its own package.json
 
 ```sh
 npx github:Shastel/npm-impact ./package.json
