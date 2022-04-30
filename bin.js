@@ -1,12 +1,34 @@
 #!/usr/bin/env node
 
-const NpmApi = require('npm-api');
+const path = require('path');
 const fs = require('fs/promises');
+
+const NpmApi = require('npm-api');
 const fetch = require('node-fetch');
+const commandLineArgs = require('command-line-args');
+const { Parser: JSONParser } = require('json2csv');
+const updateNotifier = require('update-notifier');
+
+const pkg = require('./package.json');
+const notifier = updateNotifier({ pkg });
+
+notifier.notify();
 
 const npm = new NpmApi();
 
-const [,, ...paths] = process.argv;
+const FIELDS = ['name', 'score', 'issues'];
+
+const optionDefinitions = [
+  { name: 'paths', alias: 'p', type: String, multiple: true, defaultOption: true },
+  { name: 'json', alias: 'j', type: String },
+  { name: 'csv', alias: 'c', type: String },
+];
+
+const {
+  paths,
+  json,
+  csv,
+} = commandLineArgs(optionDefinitions);
 
 if (paths.length === 0) {
   console.error('Paths lists must not be empty');
@@ -49,6 +71,12 @@ function getScore(base = BASE_SCORE, depth = 1) {
 // TODO: Add dev dependencies
 function getDependencies({ dependencies = {} /*, devDependencies = {} */}) {
   return Object.keys(dependencies)
+}
+
+function prepareCsv(data) {
+  const parser = new JSONParser({ fields: FIELDS });
+
+  return parser.parse(data);
 }
 
 async function getPackage (name) {
@@ -158,8 +186,15 @@ function score(package) {
     await score(package);
   }
 
-  // TODO: Output to CSV
   const sortedResults = Object.values(results).sort((a, b) => b.score - a.score);
 
-  console.table(sortedResults, ['name', 'score', 'issues']);
+  if (!json && !csv) {
+    return console.table(sortedResults, FIELDS);
+  }
+
+  const out = csv ? prepareCsv(sortedResults) : JSON.stringify(sortedResults, null, 2);
+
+  await fs.writeFile(json || csv, out);
+
+  console.log(`Completed. Output: ${path.resolve(__dirname, json || csv)}`)
 })();

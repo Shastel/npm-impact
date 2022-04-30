@@ -1,13 +1,16 @@
 {
   "name": "npm-impact",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "",
   "bin": "./bin.js",
   "author": "max@shas.tel",
   "license": "MIT",
   "dependencies": {
+    "command-line-args": "^5.2.1",
+    "json2csv": "^5.0.7",
     "node-fetch": "^2.6.7",
-    "npm-api": "^1.0.1"
+    "npm-api": "^1.0.1",
+    "update-notifier": "^5.1.0"
   },
   "devDependencies": {
     "eslint": "^8.13.0"
