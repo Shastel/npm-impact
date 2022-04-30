@@ -27,7 +27,7 @@ npx npm-impact path-or-url-to-pckg.json [, path-or-url-to-pckg.json]
 
 ### Available options
 `--paths, -p` - List of paths to package.json(s) to skan  
-`--json, -j` - Path to JSON output file
+`--json, -j` - Path to JSON output file  
 `--csv, -c` - Path to CSV output file
 
 ### Examples
